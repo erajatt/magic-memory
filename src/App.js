@@ -28,32 +28,33 @@ function App() {
     setChoiceTwo(null)
     setCards(shuffledCards)
     setTurns(0)
-  }
+  }//both choices are set to null, cards are reshuffled and number of turns are set to 0 on starting a new game.
 
   // handle a choice
   const handleChoice = (card) => {
     console.log(card)
     choiceOne ? setChoiceTwo(card) : setChoiceOne(card)
-  }
+  }//if there is already a choiceOne present, then the selected card should go into choiceTwo, else choiceOne.
 
   // compare 2 selected cards
   useEffect(() => {
     if (choiceOne && choiceTwo) {
-      setDisabled(true)
+      setDisabled(true)//after having both choices, all other cards are disabled for a second.
 
       if (choiceOne.src === choiceTwo.src) {
         setCards(prevCards => {
           return prevCards.map(card => {
             if (card.src === choiceOne.src) {
               return { ...card, matched: true }
+              //this spreads out the card properties (src and matched), allowing us to set the matched to true.
             } else {
               return card
             }
           })
-        })
+        })//the state of cards is updated.
         resetTurn()
       } else {
-        setTimeout(() => resetTurn(), 1000)
+        setTimeout(() => resetTurn(), 1000)//cards stay diabled for a sec.
       }
 
     }
@@ -67,7 +68,7 @@ function App() {
     setDisabled(false)
   }
 
-  // start new game automagically
+  // start new game automatically when user lands on he page.
   useEffect(() => {
     shuffleCards()
   }, [])
@@ -85,7 +86,7 @@ function App() {
             handleChoice={handleChoice}
             flipped={card === choiceOne || card === choiceTwo || card.matched}
             disabled={disabled}
-          />
+          />//all these props are passed to the singlecard.js file
         ))}
       </div>
 

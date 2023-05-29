@@ -17,7 +17,9 @@
   .flipped .front {
     transform: rotateY(0deg);
     transition-delay: 0.2s;
-  }
+  } /*transitionn delay is added so that back rotates out first and then front starts rotating */
+  /* default state of front is 90deg since it remains hidden at start, but flipped state is 0deg. So it shows up. */
+  
   
   /* back of card - cover */
   .card .back {
@@ -28,3 +30,4 @@
     transform: rotateY(90deg);
     transition-delay: 0s;
   }
+
